@@ -1,0 +1,24 @@
+.tcne-contains-cn {
+    /*filter: blur(5px);*/
+}
+
+.tcne-contains-cn:hover {
+    /*filter: initial;*/
+}
+
+.tcne-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    backdrop-filter: blur(5px);
+    z-index: 2;
+}
+
+.tcne-overlay:hover {
+    opacity: 0;
+}
+
