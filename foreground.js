@@ -23,7 +23,7 @@
                 tweetText += Content.textContent;
             });
 
-            let cnMatch = tweetText.match(/(^| +)(CN)(\s+|:|\s*\/+) *(?<CN>.*)/im)
+            let cnMatch = tweetText.match(/^.*CN(\s+|:|\s*\/+) *(?<CN>.*)/im)
             if (!cnMatch) {
                 return;
             }
