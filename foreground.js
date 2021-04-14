@@ -32,7 +32,12 @@
 
             let cnText = cnMatch?.groups?.CN;
 
-            setFontStylesFromElement(TweetContentWrapper);
+            // Only do this once
+            if (!areFontStylesInitialized) {
+                initializeFontStyles();
+                areFontStylesInitialized = true;
+            }
+
             insertOverlay(TweetContentWrapper, cnText);
         });
     }, 500)
@@ -57,15 +62,19 @@
      * Sets the TCNE font CSS variables to the values that Twitter uses for Tweet fonts.
      * For some reason the font styles aren't inherited by the TCNE elements automatically.
      */
-    function setFontStylesFromElement(Element)
+    function initializeFontStyles()
     {
-        // If we already did this, there's no reason to do it again
-        if (areFontStylesInitialized) {
-            return;
-        }
+        console.log('font update');
 
         // Get the computed styles
-        let computedStyle = window.getComputedStyle(Element);
+        let Tweet = document.querySelector('article div[lang]');
+
+        if (!Tweet) {
+            console.log('no tweet');
+            return false;
+        }
+
+        let computedStyle = window.getComputedStyle(Tweet);
         let rootStyle = document.documentElement.style;
 
         // Set the CSS variables
@@ -74,8 +83,7 @@
         rootStyle.setProperty('--tce-font-weight', computedStyle.fontWeight);
         rootStyle.setProperty('--tce-color', computedStyle.color);
 
-        // Store that we're done
-        areFontStylesInitialized = true;
+        return true;
     }
 })();
 
