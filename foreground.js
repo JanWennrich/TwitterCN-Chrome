@@ -72,6 +72,7 @@
         rootStyle.setProperty('--tce-font-family', computedStyle.fontFamily);
         rootStyle.setProperty('--tce-font-size', computedStyle.fontSize);
         rootStyle.setProperty('--tce-font-weight', computedStyle.fontWeight);
+        rootStyle.setProperty('--tce-color', computedStyle.color);
 
         // Store that we're done
         areFontStylesInitialized = true;

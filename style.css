@@ -2,6 +2,7 @@
     --tce-font-family: inherit;
     --tce-font-size: inherit;
     --tce-font-weight: inherit;
+    --tce-color: inherit;
 }
 
 article[data-tcne-contains-cn="true"] div[lang] {
@@ -27,5 +28,6 @@ article[data-tcne-contains-cn="true"]:hover .tcne-overlay {
     font-family: var(--tce-font-family);
     font-size: var(--tce-font-size);
     font-weight: var(--tce-font-weight);
+    color: var(--tce-color);
     z-index: 2;
 }
