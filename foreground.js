@@ -10,7 +10,6 @@
             Tweet.dataset.tcneParsed = true;
 
             let TweetContentWrapper = Tweet.querySelector('div[lang]');
-            let containsCN = false;
 
             if (!TweetContentWrapper) {
                 return;
@@ -27,9 +26,11 @@
                 return;
             }
 
-            let cn = cnMatch?.groups?.CN;
+            Tweet.dataset.tcneContainsCn = true;
 
-            insertOverlay(TweetContentWrapper, cn);
+            let cnText = cnMatch?.groups?.CN;
+
+            insertOverlay(TweetContentWrapper, cnText);
         });
     }, 500)
 
@@ -42,8 +43,7 @@
      */
     function insertOverlay(TweetContentWrapper, CN)
     {
-        TweetContentWrapper.classList.add(ELEMENT_CONTAINS_CN_CSS_CLASS);
-        TweetContentWrapper.parentElement.insertAdjacentHTML('afterbegin', `
+        TweetContentWrapper.parentElement.insertAdjacentHTML('beforeend', `
             <div class="tcne-overlay">
                 CN: ${CN}
             </div>

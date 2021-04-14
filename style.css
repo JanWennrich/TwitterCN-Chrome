@@ -1,9 +1,13 @@
-.tcne-contains-cn {
-    /*filter: blur(5px);*/
+article[data-tcne-contains-cn="true"] div[lang] {
+    filter: blur(5px);
 }
 
-.tcne-contains-cn:hover {
-    /*filter: initial;*/
+article[data-tcne-contains-cn="true"]:hover div[lang] {
+    filter: initial;
+}
+
+article[data-tcne-contains-cn="true"]:hover .tcne-overlay {
+    display: none;
 }
 
 .tcne-overlay {
@@ -14,11 +18,5 @@
     align-items: center;
     justify-content: center;
     font-family: inherit;
-    backdrop-filter: blur(5px);
     z-index: 2;
 }
-
-.tcne-overlay:hover {
-    opacity: 0;
-}
-
