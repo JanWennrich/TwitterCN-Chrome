@@ -1,6 +1,8 @@
 (function () {
     const ELEMENT_CONTAINS_CN_CSS_CLASS = 'tcne-contains-cn';
 
+    let areFontStylesInitialized = false;
+
     if (location.hostname !== 'twitter.com') {
         return;
     }
@@ -30,6 +32,7 @@
 
             let cnText = cnMatch?.groups?.CN;
 
+            setFontStylesFromElement(TweetContentWrapper);
             insertOverlay(TweetContentWrapper, cnText);
         });
     }, 500)
@@ -48,6 +51,30 @@
                 CN: ${CN}
             </div>
         `);
+    }
+
+    /**
+     * Sets the TCNE font CSS variables to the values that Twitter uses for Tweet fonts.
+     * For some reason the font styles aren't inherited by the TCNE elements automatically.
+     */
+    function setFontStylesFromElement(Element)
+    {
+        // If we already did this, there's no reason to do it again
+        if (areFontStylesInitialized) {
+            return;
+        }
+
+        // Get the computed styles
+        let computedStyle = window.getComputedStyle(Element);
+        let rootStyle = document.documentElement.style;
+
+        // Set the CSS variables
+        rootStyle.setProperty('--tce-font-family', computedStyle.fontFamily);
+        rootStyle.setProperty('--tce-font-size', computedStyle.fontSize);
+        rootStyle.setProperty('--tce-font-weight', computedStyle.fontWeight);
+
+        // Store that we're done
+        areFontStylesInitialized = true;
     }
 })();
 

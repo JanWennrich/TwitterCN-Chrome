@@ -1,3 +1,9 @@
+:root {
+    --tce-font-family: inherit;
+    --tce-font-size: inherit;
+    --tce-font-weight: inherit;
+}
+
 article[data-tcne-contains-cn="true"] div[lang] {
     filter: blur(5px);
 }
@@ -17,6 +23,8 @@ article[data-tcne-contains-cn="true"]:hover .tcne-overlay {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: inherit;
+    font-family: var(--tce-font-family);
+    font-size: var(--tce-font-size);
+    font-weight: var(--tce-font-weight);
     z-index: 2;
 }
