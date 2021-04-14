@@ -23,14 +23,14 @@
                 tweetText += Content.textContent;
             });
 
-            let cnMatch = tweetText.match(/^.*CN(\s+|:|\s*\/+) *(?<CN>.*)/im)
+            let cnMatch = tweetText.match(/^.*CN(\s+|:|\s*\/+) *(?<cnType>.*)/im)
             if (!cnMatch) {
                 return;
             }
 
             Tweet.dataset.tcneContainsCn = true;
 
-            let cnText = cnMatch?.groups?.CN;
+            let cnText = cnMatch?.groups?.cnType;
 
             // Only do this once
             if (!areFontStylesInitialized) {
